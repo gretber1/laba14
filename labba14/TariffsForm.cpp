@@ -150,7 +150,15 @@ void TariffsForm::Add(Object^, EventArgs^)
 
 void TariffsForm::Edit(Object^, EventArgs^)
 {
-    if (dgv->SelectedRows->Count == 0) return;
+    if (dgv->SelectedRows->Count == 0) { 
+        MessageBox::Show(
+            "Нет достпуных тарифов для изменения.",
+            "Ошибка при изменении",
+            MessageBoxButtons::OK,
+            MessageBoxIcon::Error
+        );
+        return; 
+    }
     int i = dgv->SelectedRows[0]->Index;
 
     double price, discount;
