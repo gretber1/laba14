@@ -52,8 +52,26 @@ inline bool PromptDouble(
     if (String::IsNullOrWhiteSpace(s)) return false;
 
     if (Double::TryParse(s, value))
-        return value >= min && value <= max;
+    {
+        if (value < min || value > max)
+        {
+            MessageBox::Show(
+                "Значение должно быть в диапазоне от " +
+                min + " до " + max,
+                "Ошибка ввода",
+                MessageBoxButtons::OK,
+                MessageBoxIcon::Error
+            );
+            return false;
+        }
+        return true;
+    }
 
-    MessageBox::Show("Некорректное число");
+    MessageBox::Show(
+        "Введено невозможное занчение",
+        "Ошибка ввода",
+        MessageBoxButtons::OK,
+        MessageBoxIcon::Error
+    );
     return false;
 }
