@@ -14,7 +14,7 @@ inline String^ Prompt(String^ text, String^ caption)
 
     Label^ lbl = gcnew Label();
     lbl->Text = text;
-    lbl->Location = Point(20, 10);
+    lbl->Location = Point(20, 5);
     f->Controls->Add(lbl);
 
     TextBox^ tb = gcnew TextBox();
