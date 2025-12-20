@@ -189,6 +189,15 @@ void TariffsForm::Delete(Object^, EventArgs^)
 
 void TariffsForm::Find(Object^, EventArgs^)
 {
+    if (dgv->SelectedRows->Count == 0) {
+        MessageBox::Show(
+            "Нет достпуных тарифов для поиска.",
+            "Ошибка при поиске",
+            MessageBoxButtons::OK,
+            MessageBoxIcon::Error
+        );
+        return;
+    }
     Tariff^ t = tariffs->FindMin();
     if (t)
         MessageBox::Show("Минимальный тариф:\n" + t->Name + " = " + t->FinalPrice());
